@@ -1,5 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+
+// Axios
+import axios from "axios";
 
 export const usePokemonPaginate = () => {
   const POKEMON_TYPE_COLORS = {
@@ -19,7 +21,7 @@ export const usePokemonPaginate = () => {
     psychic: "#F85888",
     ice: "#98D8D8",
     dragon: "#7038F8",
-    dark: "#705860",
+    dark: "#705746",
     fairy: "#EE99AC",
   };
 
@@ -51,16 +53,18 @@ export const usePokemonPaginate = () => {
       newPokemonList.push({
         id: pokemonDetail.id,
         name: pokemonDetail.name,
-        type: pokemonDetail.types[0].type.name, // type name here
+        type: pokemonDetail.types[0].type.name,
         picture: pokemonDetail.sprites.other["official-artwork"].front_default,
         color: POKEMON_TYPE_COLORS[pokemonDetail.types[0].type.name],
       });
     }
+
+    setPokemonList((prev) => [...prev, ...newPokemonList]);
   };
 
   useEffect(() => {
     loadPokemons();
   }, []);
 
-  return "Ejecutadou";
+  return { pokemonList, loadPokemons };
 };
