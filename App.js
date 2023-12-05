@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 
 // React Native Imports
+import 'react-native-gesture-handler';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Components
-import HomeScreen from './src/components/screens/HomeScreen';
+import { StackNavigator } from './src/router/StackNavigator';
+import { TabNavigator } from './src/router/TabNavigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <HomeScreen />
-    </View>
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
   );
 }
 
