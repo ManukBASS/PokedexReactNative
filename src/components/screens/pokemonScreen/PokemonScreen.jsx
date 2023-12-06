@@ -1,19 +1,59 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { TouchableOpacity } from "react-native";
+// React Ntive
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+// Hooks
+import usePokemon from "../../../hooks/usePokemon";
+// Components
+import { PokemonDetail } from "../../common/pokemonDetail/PokemonDetail";
+// Styles
+import { pokemonScreenStyles } from "./styles";
+// Icons
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export function PokemonScreen({ route, navigation }) {
-  const { pokemonSelected } = route.params;
   const { top } = useSafeAreaInsets();
+  const { pokemonSelected } = route.params;
+
+  const { pokemon } = usePokemon(pokemonSelected.id);
   return (
-    <>
-      <View style={{ top: top }}>
-        <Text>Pokemon Screen</Text>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text>Go Back</Text>
+    <View style={{ flex: 1 }}>
+      {/* HEADER */}
+      <View
+        style={{
+          ...pokemonScreenStyles.container,
+          backgroundColor: pokemonSelected.color,
+        }}
+      >
+        <TouchableOpacity
+          style={{ ...pokemonScreenStyles.backButton, top: top + 5 }}
+          onPress={() => navigation.goBack()}
+        >
+          <AntDesign name="arrowleft" color="white" size={30} />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={{ ...pokemonScreenStyles.favoriteButton, top: top + 5 }}
+        >
+          <MaterialIcons name="favorite" size={30} color="white" />
+        </TouchableOpacity>
+
+        <Text style={{ ...pokemonScreenStyles.title, top: top + 35 }}>
+          #{pokemon.id} {pokemon.name}
+        </Text>
+
+        <Image
+          style={pokemonScreenStyles.pokeball}
+          source={require("../../assets/pokebola-blanca.png")}
+        />
+        <Image
+          style={pokemonScreenStyles.picture}
+          source={{ uri: pokemonSelected.picture }}
+        />
       </View>
-    </>
+
+      {/* Details */}
+      <PokemonDetail pokemon={pokemon} />
+    </View>
   );
 }
