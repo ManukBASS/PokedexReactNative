@@ -1,6 +1,12 @@
 import React from "react";
 // React Ntive
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 // Hooks
 import usePokemon from "../../../hooks/usePokemon";
@@ -16,7 +22,7 @@ export function PokemonScreen({ route, navigation }) {
   const { top } = useSafeAreaInsets();
   const { pokemonSelected } = route.params;
 
-  const { pokemon } = usePokemon(pokemonSelected.id);
+  const { pokemon, isLoading } = usePokemon(pokemonSelected.id);
   return (
     <View style={{ flex: 1 }}>
       {/* HEADER */}
@@ -39,7 +45,7 @@ export function PokemonScreen({ route, navigation }) {
         </TouchableOpacity>
 
         <Text style={{ ...pokemonScreenStyles.title, top: top + 35 }}>
-          #{pokemon.id} {pokemon.name}
+          N.º {pokemon.id} {pokemon.name}
         </Text>
 
         <Image
@@ -53,7 +59,11 @@ export function PokemonScreen({ route, navigation }) {
       </View>
 
       {/* Details */}
-      <PokemonDetail pokemon={pokemon} />
+      {isLoading ? (
+        <ActivityIndicator size={80} style={{ marginTop: 50 }} />
+      ) : (
+        <PokemonDetail pokemon={pokemon} />
+      )}
     </View>
   );
 }

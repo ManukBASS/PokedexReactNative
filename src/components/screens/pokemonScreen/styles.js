@@ -26,7 +26,7 @@ export const pokemonScreenStyles = StyleSheet.create({
     pokeball: {
         width: 250,
         height: 250,
-        bottom: -50,
+        bottom: -70,
         opacity: 0.7
     },
     picture: {

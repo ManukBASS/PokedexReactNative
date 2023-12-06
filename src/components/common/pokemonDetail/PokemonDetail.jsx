@@ -1,22 +1,74 @@
 import React from "react";
 // React Native
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { ScrollView } from "react-native";
 import { StyleSheet } from "react-native";
+// Functions
+import { pokemonTypeIconGetter } from "./typeIconGetter";
 // Styles
 import { pokemonDetailStyles } from "./styles";
-
-// ? Minuto 41:10 5to video !!
+// Icons
+import { FontAwesome } from "@expo/vector-icons";
 
 export function PokemonDetail({ pokemon }) {
-  console.log(pokemon);
+  const typesCount = pokemon.types?.length || 0;
   return (
-    <ScrollView style={StyleSheet.absoluteFillObject}>
+    <ScrollView
+      style={StyleSheet.absoluteFillObject}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={pokemonDetailStyles.container}>
-        <Text>Types</Text>
+        <View style={pokemonDetailStyles.typeAndWeightContainer}>
+          <View>
+            <Text style={pokemonDetailStyles.title}>Types</Text>
+            <View style={pokemonDetailStyles.typesContainer}>
+              {pokemon.types?.map(({ type }, index) => (
+                <Image
+                  key={type.name}
+                  source={pokemonTypeIconGetter(type.name)}
+                  style={{
+                    ...pokemonDetailStyles.typeIcon,
+                    marginRight: index < typesCount - 1 ? 10 : 0,
+                  }}
+                />
+              ))}
+            </View>
+          </View>
+          <View style={pokemonDetailStyles.weightContainer}>
+            <Text style={pokemonDetailStyles.title}>Weight</Text>
+            <Text style={pokemonDetailStyles.weightText}>
+              {pokemon.weight} kg
+            </Text>
+          </View>
+        </View>
         <View>
-          {pokemon.types?.map(({ type }) => (
-            <Text key={type.name}>{type.name}</Text>
+          <Text style={pokemonDetailStyles.title}>Sprites</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <Image
+              style={pokemonDetailStyles.sprite}
+              source={{ uri: pokemon.sprites.front_default }}
+            />
+            <Image
+              style={pokemonDetailStyles.sprite}
+              source={{ uri: pokemon.sprites.back_default }}
+            />
+            <Image
+              style={pokemonDetailStyles.sprite}
+              source={{ uri: pokemon.sprites.front_shiny }}
+            />
+            <Image
+              style={pokemonDetailStyles.sprite}
+              source={{ uri: pokemon.sprites.front_shiny }}
+            />
+          </ScrollView>
+        </View>
+        <View style={pokemonDetailStyles.containerAbilities}>
+          <Text style={pokemonDetailStyles.title}>Abilities</Text>
+          {pokemon.abilities.map(({ ability }) => (
+            <Text key={ability.name} style={pokemonDetailStyles.typeText}>
+              <FontAwesome name="superpowers" size={25} color="black" />{" "}
+              {ability.name}
+            </Text>
           ))}
         </View>
       </View>
