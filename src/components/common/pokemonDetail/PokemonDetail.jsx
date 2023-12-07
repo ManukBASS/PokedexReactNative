@@ -62,14 +62,36 @@ export function PokemonDetail({ pokemon }) {
             />
           </ScrollView>
         </View>
-        <View style={pokemonDetailStyles.containerAbilities}>
+        <View>
           <Text style={pokemonDetailStyles.title}>Abilities</Text>
-          {pokemon.abilities.map(({ ability }) => (
-            <Text key={ability.name} style={pokemonDetailStyles.typeText}>
-              <FontAwesome name="superpowers" size={25} color="black" />{" "}
-              {ability.name}
-            </Text>
-          ))}
+          <View style={pokemonDetailStyles.containerAbilities}>
+            {pokemon.abilities.map(({ ability }) => (
+              <Text key={ability.name} style={pokemonDetailStyles.typeText}>
+                <FontAwesome name="superpowers" size={25} color="black" />{" "}
+                {ability.name}
+              </Text>
+            ))}
+          </View>
+        </View>
+        <View style={pokemonDetailStyles.containerStats}>
+          <Text style={pokemonDetailStyles.title}>Stats</Text>
+          {pokemon.stats.map((stat, i) => {
+            return (
+              <View key={stat.stat.name + i} style={{ flexDirection: "row" }}>
+                <Text style={pokemonDetailStyles.statText}>
+                  {stat.stat.name}
+                </Text>
+                <Text
+                  style={{
+                    ...pokemonDetailStyles.statText,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {stat.base_stat}
+                </Text>
+              </View>
+            );
+          })}
         </View>
       </View>
     </ScrollView>

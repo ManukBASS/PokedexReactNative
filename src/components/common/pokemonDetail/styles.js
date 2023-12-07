@@ -33,7 +33,8 @@ export const pokemonDetailStyles = StyleSheet.create({
         marginTop: 10,
     },
     typeText: {
-        marginRight: 10,
+        marginHorizontal: 20,
+        marginTop: 5,
         fontSize: 20,
         textTransform: 'capitalize'
     },
@@ -42,6 +43,16 @@ export const pokemonDetailStyles = StyleSheet.create({
         height: 90
     },
     containerAbilities: {
-        paddingBottom: 80
+        marginTop: 10,
+        justifyContent: 'center',
+        flexDirection: "row"
+    },
+    containerStats: {
+        marginBottom: 70
+    },
+    statText: {
+        width: 150,
+        fontSize: 20,
+        textTransform: 'capitalize',
     }
 })

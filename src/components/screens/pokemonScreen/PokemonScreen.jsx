@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 // React Ntive
 import {
   Text,
@@ -17,12 +17,18 @@ import { pokemonScreenStyles } from "./styles";
 // Icons
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { FavoritesContext } from "../../../context/FavoritesContext";
 
 export function PokemonScreen({ route, navigation }) {
   const { top } = useSafeAreaInsets();
   const { pokemonSelected } = route.params;
-
   const { pokemon, isLoading } = usePokemon(pokemonSelected.id);
+  const { handleFavorites, favorites } = useContext(FavoritesContext);
+
+  const isFavorite = favorites.some(
+    (element) => element.id === pokemonSelected.id
+  );
+
   return (
     <View style={{ flex: 1 }}>
       {/* HEADER */}
@@ -40,8 +46,13 @@ export function PokemonScreen({ route, navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={{ ...pokemonScreenStyles.favoriteButton, top: top + 5 }}
+          onPress={() => handleFavorites(pokemonSelected)}
         >
-          <MaterialIcons name="favorite" size={30} color="white" />
+          <MaterialIcons
+            name="favorite"
+            size={30}
+            color={isFavorite ? "red" : "white"}
+          />
         </TouchableOpacity>
 
         <Text style={{ ...pokemonScreenStyles.title, top: top + 35 }}>
@@ -58,7 +69,7 @@ export function PokemonScreen({ route, navigation }) {
         />
       </View>
 
-      {/* Details */}
+      {/* DETAILS */}
       {isLoading ? (
         <ActivityIndicator size={80} style={{ marginTop: 50 }} />
       ) : (
