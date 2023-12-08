@@ -1,6 +1,4 @@
-# PokedexReactNative 📱
-
-![PokedexReactNative Logo](https://cdn.icon-icons.com/icons2/851/PNG/512/Pokedex_tool_icon-icons.com_67529.png)
+# Pokedex_ReactNative <img src="https://cdn.icon-icons.com/icons2/851/PNG/512/Pokedex_tool_icon-icons.com_67529.png" alt="Logo" width="50" height="50">
 
 ## Description
 
@@ -15,10 +13,12 @@ Pokedex_ReactNative is a simple Pokedex application developed using React Native
 
 ## ScreenShots
 
-![Home Screen](src/components/assets/screenshots/Screenshot_Home.png)
-![Pokemon Details Screen](src/components/assets/screenshots/Screenshot_PokemonDetails.png)
-![More Details](src/components/assets/screenshots/Screenshot_MoreDetails.png)
-![Favorite Screen](src/components/assets/screenshots/Screenshot_Favorites.png)
+<div style="display: flex; justify-content: space-around;">
+  <img src="src/components/assets/screenshots/Screenshot_Home.png" alt="Home Screen" width="200" height="400">
+  <img src="src/components/assets/screenshots/Screenshot_PokemonDetails.png" alt="Pokemon Details Screen" width="200" height="400">
+  <img src="src/components/assets/screenshots/Screenshot_MoreDetails.png" alt="More Details" width="200" height="400">
+  <img src="src/components/assets/screenshots/Screenshot_Favorites.png" alt="Favorite Screen" width="200" height="400">
+</div>
 
 
 ## Prerequisites
@@ -31,4 +31,4 @@ git clone https://github.com/ManukBASS/PokedexReactNative.git
 cd PokedexReactNative
 npm install
 npm start
-a (on the Expo menu, for connecting the app with your virtual device)
+a (on the Expo menu, allowing connection between the app with your virtual device)
