@@ -1,7 +1,6 @@
 import React from "react";
 
 // React Native
-import { View, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Components
